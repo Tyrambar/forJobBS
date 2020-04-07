@@ -2,10 +2,10 @@ import re
 
 MAIN_URL = "https://www.list-org.com/company/"
 PARAMS_COMPANY = ["", "Полное юридическое наименование",
-				  "Руководитель", "Дата регистрации",
+                  "Руководитель", "Дата регистрации",
                   "Статус", "ИНН", "КПП", "ОГРН"]
 
-				  
+			  
 def get_params(data):
     ans = {}
     previous = ''
