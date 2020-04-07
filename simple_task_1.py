@@ -18,7 +18,7 @@ while True:
 
 		
 HEAD_CELLS = ["{}{}".format('A', numb+1) 
-	for numb in range(len(PARAMS_COMPANY))]
+    for numb in range(len(PARAMS_COMPANY))]
 wb = Workbook()
 ws = wb.active
 for numb, cell in enumerate(HEAD_CELLS):
@@ -52,7 +52,7 @@ with open(PATH, "w", newline='') as for_task_1_simple:
     write.writerow([PARAMS_COMPANY[0],''])
     for line in range(len(PARAMS_COMPANY[:-1])):
         write.writerow([PARAMS_COMPANY[line+1],
-					    ans[PARAMS_COMPANY[line+1]]])
+                        ans[PARAMS_COMPANY[line+1]]])
 
 wb.save("for_task_1_simple.xlsx")
 
