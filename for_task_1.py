@@ -1,21 +1,23 @@
 import re
 
-main_url = "https://www.list-org.com/company/"
-params_company = ["", "Полное юридическое наименование", "Руководитель",
-                  "Дата регистрации", "Статус", "ИНН", "КПП", "ОГРН"]
+MAIN_URL = "https://www.list-org.com/company/"
+PARAMS_COMPANY = ["", "Полное юридическое наименование",
+				  "Руководитель", "Дата регистрации",
+                  "Статус", "ИНН", "КПП", "ОГРН"]
 
+				  
 def get_params(data):
     ans = {}
     previous = ''
     from_tables = data.find_all("td", limit=15)
-    ans[params_company[1]] = data.find("a", class_="upper").get_text()
+    ans[PARAMS_COMPANY[1]] = data.find("a", class_="upper").get_text()
     from_requisite = data.find_all("p")
     for n, el in enumerate(from_tables):
         if re.match(r'ИНН[ / ]*КПП', previous):
             dry_data = el.get_text().split('/')
             ans["ИНН"] = re.sub(' ', '', dry_data[0])
             ans["КПП"] = re.sub(' ', '', dry_data[1])
-        if previous in params_company:
+        if previous in PARAMS_COMPANY:
             ans[previous] = el.get_text()
         previous = el.get_text()[:-1]
     for tag in from_requisite:
@@ -25,7 +27,7 @@ def get_params(data):
     return ans
 
 
-dry_useragents = """
+DRY_USERAGENTS = """
 Mozilla/5.0 (compatible; MSIE 10.6; Windows NT 6.1; Trident/5.0; InfoPath.2; SLCC1; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729; .NET CLR 2.0.50727) 3gpp-gba UNTRUSTED/1.0
 Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)
 Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/5.0)
@@ -64,4 +66,4 @@ Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0; FunWebProducts)
 Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0; chromeframe/11.0.696.57)
 Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.0; Trident/5.0; chromeframe/11.0.696.57)
 """
-useragents = dry_useragents.split('\n')[1:]
+USERAGENTS = DRY_USERAGENTS.split('\n')[1:]
