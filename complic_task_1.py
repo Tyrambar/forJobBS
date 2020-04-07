@@ -21,7 +21,7 @@ while True:
         break
 
 HEAD_CELLS = ["{}{}".format(st.ascii_uppercase[numb], 1) 
-	for numb in range(len(PARAMS_COMPANY))]
+    for numb in range(len(PARAMS_COMPANY))]
 wb = Workbook()
 ws = wb.active
 
@@ -38,7 +38,7 @@ with open(PATH, "w", newline='') as for_task_1_complic:
             USERAGENT = {'User-agent': choice(USERAGENTS)}
             try:
                 req = requests.get('{}{}'.format(main_url, company),
-								   headers=USERAGENT)
+                                   headers=USERAGENT)
             except:
                 pass
             else:
@@ -46,7 +46,7 @@ with open(PATH, "w", newline='') as for_task_1_complic:
         bs = Bs(req.text, "html.parser")
         ans = get_params(bs)
         main_cells = ["{}{}".format(st.ascii_uppercase[num+1], numb+2)
-			for num in range(len(PARAMS_COMPANY[1:]))]
+            for num in range(len(PARAMS_COMPANY[1:]))]
         ws["A" + str(numb+2)] = numb+1
         row_csv = [numb+1]
         for num, cell in enumerate(main_cells):
