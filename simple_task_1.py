@@ -21,6 +21,7 @@ HEAD_CELLS = ["{}{}".format('A', numb+1)
     for numb in range(len(PARAMS_COMPANY))]
 wb = Workbook()
 ws = wb.active
+
 for numb, cell in enumerate(HEAD_CELLS):
     ws[cell] = PARAMS_COMPANY[numb]
 url = '{}{}'.format(main_url, inp_url)
@@ -40,7 +41,7 @@ ans = get_params(bs)
 
 for n, param in enumerate(PARAMS_COMPANY[1:]):
     main_cells = ["{}{}".format('B', numb+2) 
-		for numb in range(len(PARAMS_COMPANY[1:]))]
+		    for numb in range(len(PARAMS_COMPANY[1:]))]
     for num, cell in enumerate(main_cells):
         ws[cell] = ans[PARAMS_COMPANY[num+1]]
 
@@ -55,5 +56,3 @@ with open(PATH, "w", newline='') as for_task_1_simple:
                         ans[PARAMS_COMPANY[line+1]]])
 
 wb.save("for_task_1_simple.xlsx")
-
-
