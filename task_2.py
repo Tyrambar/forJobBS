@@ -66,9 +66,9 @@ with open(PATH, "w", newline='') as for_task_2:
     for numb, art in enumerate(all_articles):
         ans[PARAMS_ARTICLES[0]] = numb+1
         ans[PARAMS_ARTICLES[1]] = art.find("a", class_="post__title_link")
-                                           .get_text()
+                                          .get_text()
         ans[PARAMS_ARTICLES[2]] = art.find("div", class_="post__text-html")
-                                           .get_text()
+                                          .get_text()
         ans[PARAMS_ARTICLES[3]] = art.find("span", 
                                            class_="post__time").get_text()
         ans[PARAMS_ARTICLES[4]] = art.find("span",
